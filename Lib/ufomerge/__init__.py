@@ -4,9 +4,10 @@ import copy
 from io import StringIO
 import logging
 from collections import defaultdict
+from collections.abc import Set
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable, Mapping, OrderedDict, Set, Tuple, Optional, Union
+from typing import Iterable, Tuple, Optional, Union
 import re
 
 from fontTools.feaLib.parser import Parser
@@ -192,7 +193,7 @@ class UFOMerger:
                 count = len(self.final_glyphset)
 
         if self.layout_handling != "ignore":
-            subsetter = LayoutSubsetter(glyphset=self.final_glyphset)
+            subsetter = LayoutSubsetter(glyphset=self.incoming_glyphset.keys())
             if self.duplicate_lookup_handling == "first":
                 ufo1path = getattr(self.ufo1, "_path", None)
                 includeDir = (

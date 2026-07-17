@@ -1,4 +1,5 @@
-from typing import Any, Iterable, Mapping, Optional, List, Dict, Set
+from typing import Any, Iterable, Mapping, Optional, List, Dict
+from collections.abc import Set
 from fontTools.feaLib import ast
 import copy
 
