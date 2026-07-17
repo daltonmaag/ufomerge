@@ -4,9 +4,10 @@ import copy
 from io import StringIO
 import logging
 from collections import defaultdict
+from collections.abc import Set
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable, Mapping, OrderedDict, Set, Tuple, Optional, Union
+from typing import Iterable, Tuple, Optional, Union
 import re
 
 from fontTools.feaLib.parser import Parser

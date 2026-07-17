@@ -1,7 +1,8 @@
 import logging
 from collections import defaultdict
+from collections.abc import Set
 from dataclasses import dataclass, field
-from typing import Dict, OrderedDict, Set
+from typing import Dict, OrderedDict
 
 from fontTools.feaLib import ast
 from fontTools.misc.visitor import Visitor
