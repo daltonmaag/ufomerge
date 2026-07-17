@@ -192,7 +192,7 @@ class UFOMerger:
                 count = len(self.final_glyphset)
 
         if self.layout_handling != "ignore":
-            subsetter = LayoutSubsetter(glyphset=self.final_glyphset)
+            subsetter = LayoutSubsetter(glyphset=self.incoming_glyphset.keys())
             if self.duplicate_lookup_handling == "first":
                 ufo1path = getattr(self.ufo1, "_path", None)
                 includeDir = (
