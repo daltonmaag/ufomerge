@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Merge together two source fonts in UFO format"""
+
 from __future__ import annotations
 
 import logging
@@ -8,7 +9,6 @@ from argparse import ArgumentParser, BooleanOptionalAction
 import ufoLib2
 
 from ufomerge import merge_ufos
-
 
 logger = logging.getLogger("ufomerge")
 
