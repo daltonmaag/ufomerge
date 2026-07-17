@@ -355,6 +355,8 @@ def visit(visitor, block, *args, **kwargs):
     block.statements = [
         statement for statement in block.statements if getattr(statement, "_keep", True)
     ]
+    # Having multiple consecutive subtable statements breaks compilation
+    block.statements = prune_consecutive_subtables(block.statements)
     setattr(
         block,
         "_keep",
@@ -441,6 +443,24 @@ def visit(_visitor, st, *args, **kwargs):
 def visit(_visitor, st, *args, **kwargs):
     st._keep = "maybe"
     return False
+
+
+def prune_consecutive_subtables(statements: list[ast.Statement]) -> list[ast.Statement]:
+    if not statements:
+        return statements
+
+    pruned = []
+    for statement in statements:
+        if isinstance(statement, ast.SubtableStatement) and (
+            not pruned or isinstance(pruned[-1], ast.SubtableStatement)
+        ):
+            continue
+        pruned.append(statement)
+
+    if isinstance(pruned[-1], ast.SubtableStatement):
+        del pruned[-1]
+
+    return pruned
 
 
 class LayoutClosureVisitor(Visitor):
